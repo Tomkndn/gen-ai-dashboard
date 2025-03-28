@@ -33,14 +33,40 @@ const querySlice = createSlice({
     querySuccess: (state, action: PayloadAction<{ name: string; value: number }[]>) => {
       state.result = action.payload;
       state.loading = false;
-      state.history.unshift({ query: state.query, isError: false, result: action.payload, error: null });
+      state.error = null;
+
+      if (!state.history.some((entry) => entry.query === state.query)) {
+        state.history.unshift({
+          query: state.query,
+          isError: false,
+          result: action.payload,
+          error: null,
+        });
+      }
     },
     queryFailure: (state, action: PayloadAction<string>) => {
-      state.error = action.payload;
+      state.result = null;
       state.loading = false;
-      state.history.unshift({ query: state.query, isError: true, result: null, error: action.payload}); 
+      state.error = action.payload;
+
+      if (!state.history.some((entry) => entry.query === state.query)) {
+        state.history.unshift({
+          query: state.query,
+          isError: true,
+          result: null,
+          error: action.payload,
+        });
+      }
     },
-    restoreQuery: (state, action: PayloadAction<{ query: string; result: { name: string; value: number }[] | null; error: string | null }>) => {
+    restoreQuery: (
+      state,
+      action: PayloadAction<{
+        query: string;
+        result: { name: string; value: number }[] | null;
+        error: string | null;
+      }>
+    ) => {
+      state.query = action.payload.query;
       state.result = action.payload.result;
       state.error = action.payload.error;
       state.loading = false;

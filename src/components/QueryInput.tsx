@@ -6,6 +6,7 @@ import mockSuggestions from "../utils/mockSuggestions";
 const QueryInput: React.FC = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +21,7 @@ const QueryInput: React.FC = () => {
   };
 
   const handleQuery = () => {
+    setLoading(true);
     if (!query.trim()) return;
 
     dispatch(submitQuery(query));
@@ -51,7 +53,8 @@ const QueryInput: React.FC = () => {
       } else {
         dispatch(queryFailure("No data found for this query."));
       }
-    }, 1500);
+      setLoading(false);
+    }, 2500);
 
     setSuggestions([]); 
     setQuery(""); 
@@ -84,9 +87,16 @@ const QueryInput: React.FC = () => {
 
       <button
         onClick={handleQuery}
-        className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 w-full font-semibold text-lg"
+        disabled={loading} 
+        className={`px-6 py-2 rounded-lg w-full font-semibold text-lg transition-all 
+      ${
+        loading
+          ? "bg-blue-300 cursor-not-allowed"
+          : "bg-blue-500 hover:bg-blue-600 text-white"
+      }
+    `}
       >
-        Submit Query
+        {loading ? "Processing..." : "Submit Query"}
       </button>
     </div>
   );

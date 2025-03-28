@@ -40,11 +40,13 @@ const ChartDisplay: React.FC = () => {
       </div>
 
       {loading ? (
-        <p className="text-blue-400 animate-pulse text-center">
+        <p className="text-blue-400  animate-pulse flex justify-center items-center h-full">
           Processing your query... ⏳
         </p>
       ) : error ? (
-        <p className="text-red-400 text-center">{error}</p>
+        <p className="text-red-400  animate-pulse flex justify-center items-center h-full">
+          {error}
+        </p>
       ) : result && result.length > 0 ? (
         <div className="flex items-center justify-center w-full h-full">
           <ResponsiveContainer width="100%" height="90%">
@@ -79,8 +81,14 @@ const ChartDisplay: React.FC = () => {
               <AreaChart data={result}>
                 <defs>
                   <linearGradient id="areaColor" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6366F1" stopOpacity={0.4} />
-                    <stop offset="100%" stopColor="#4F46E5" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#6366F1" stopOpacity={0.7} />{" "}
+                    {/* Increased opacity */}
+                    <stop
+                      offset="100%"
+                      stopColor="#4F46E5"
+                      stopOpacity={0.2}
+                    />{" "}
+                    {/* Slightly visible at the bottom */}
                   </linearGradient>
                 </defs>
 
@@ -97,27 +105,42 @@ const ChartDisplay: React.FC = () => {
                 <Area
                   type="monotone"
                   dataKey="value"
-                  stroke="url(#areaColor)"
+                  stroke="#6366F1"
                   fill="url(#areaColor)"
                   strokeWidth={3}
                 />
               </AreaChart>
             ) : (
               <PieChart>
+                <defs>
+                  <linearGradient id="pieGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#6366F1" />
+                    <stop offset="100%" stopColor="#4F46E5" />
+                  </linearGradient>
+                </defs>
+
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#1F2937",
+                    backgroundColor: "#fff",
                     color: "#E5E7EB",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    padding: "8px",
                   }}
                 />
+
                 <Pie
                   data={result}
                   dataKey="value"
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={80}
-                  fill="#6366F1"
+                  outerRadius={75}
+                  innerRadius={35}
+                  paddingAngle={5}
+                  stroke="#1F2937"
+                  strokeWidth={2}
+                  fill="url(#pieGradient)"
                   label={({ name, percent }) =>
                     `${name} (${(percent * 100).toFixed(0)}%)`
                   }
@@ -127,7 +150,7 @@ const ChartDisplay: React.FC = () => {
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="text-gray-400 text-center">
+        <p className="text-gray-400  animate-pulse flex justify-center items-center h-full">
           Submit a query to see insights.
         </p>
       )}
