@@ -14,7 +14,7 @@ const mockSuggestions = (input: string): string[] => {
       "Yearly revenue growth",
       "Revenue per customer segment",
       "Revenue by marketing channel",
-      "Quarterly revenue comparison",
+      "Revenue trends over the past 6 months",
     ],
     customer: [
       "New customers this month",
