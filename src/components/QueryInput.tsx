@@ -62,7 +62,7 @@ const QueryInput: React.FC = () => {
 
 
   return (
-    <div className="relative flex flex-col items-center space-y-4 w-[700px] bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div className="relative flex flex-col items-center space-y-4 w-full max-w-[700px] bg-gray-800 p-6 rounded-lg shadow-lg">
       <input
         type="text"
         className="px-4 py-2 border rounded-lg w-full shadow-sm bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg"
@@ -87,8 +87,8 @@ const QueryInput: React.FC = () => {
 
       <button
         onClick={handleQuery}
-        disabled={loading} 
-        className={`px-6 py-2 rounded-lg w-full font-semibold text-lg transition-all 
+        disabled={loading}
+        className={`px-6 py-2 rounded-lg w-full font-semibold sm:text-lg transition-all 
       ${
         loading
           ? "bg-blue-300 cursor-not-allowed"

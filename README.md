@@ -17,7 +17,8 @@ A **React + TypeScript** project that provides an interactive **data visualizati
 
 ## 🖥️ Demo  
 
-![Gen AI Dashboard Preview](https://your-demo-image-url.com) *(Replace with actual image link)*  
+![Gen AI Dashboard Preview](public/image.png)
+
 
 ---
 
@@ -35,10 +36,14 @@ A **React + TypeScript** project that provides an interactive **data visualizati
 
 ```bash
 📂 src
+│── 📁 assets  
 │── 📁 components  
 │   ├── QueryInput.tsx    
+│   ├── ResultDisplay.tsx    
 │   ├── ChartDisplay.tsx   
-│   ├── HistoryTab.tsx   
+│   ├── QueryHistory.tsx 
+│── 📁 pages  
+│   ├── Dashboard.tsx   
 │── 📁 redux  
 │   ├── querySlice.ts     
 │   ├── store.ts   
@@ -71,7 +76,7 @@ A **React + TypeScript** project that provides an interactive **data visualizati
 ## 🔧 Installation & Setup  
 
 ```sh
-git clone https://github.com/your-repo/gen-ai-dashboard.git
+git clone https://github.com/Tomkndn/gen-ai-dashboard
 
 cd gen-ai-dashboard
 
@@ -133,4 +138,4 @@ Contributions are welcome! 🎉
 ---
 
 
-💡 **Have Suggestions?** Drop an issue or PR on **[GitHub](https://github.com/your-repo/gen-ai-dashboard)**! 🚀
+💡 **Have Suggestions?** Drop an issue or PR on **[GitHub](https://github.com/Tomkndn/gen-ai-dashboard)**! 🚀

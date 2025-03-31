@@ -21,7 +21,7 @@ const ChartDisplay: React.FC = () => {
   const [chartType, setChartType] = useState("Bar"); 
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-[600px] h-[450px] text-white flex flex-col">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg sm:w-[600px] w-full max-w-[600px] h-auto min-h-[350px] text-white flex flex-col items-center">
       <h2 className="text-lg font-semibold text-blue-400 mb-4 text-center">
         Query Insights
       </h2>
@@ -49,7 +49,7 @@ const ChartDisplay: React.FC = () => {
         </p>
       ) : result && result.length > 0 ? (
         <div className="flex items-center justify-center w-full h-full">
-          <ResponsiveContainer width="100%" height="90%">
+          <ResponsiveContainer width="100%" height={350}>
             {chartType === "Bar" ? (
               <BarChart data={result}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />

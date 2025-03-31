@@ -8,7 +8,7 @@ const ResultDisplay: React.FC = () => {
   );
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-[300px] max-h-[500px] min-h-[150px] overflow-y-auto text-white">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg sm:w-[300px] w-full min-h-[150px] max-h-[500px] overflow-y-auto text-white">
       <h3 className="font-semibold text-blue-400 mb-2">Query Results:</h3>
       {loading && (
         <p className="text-blue-400 animate-pulse flex justify-center items-center h-full">
