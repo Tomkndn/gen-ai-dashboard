@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { restoreQuery } from "../redux/querySlice";
 
-const QueryHistory: React.FC = () => {
+const QueryHistory: React.FC<{
+  setHistoryOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ setHistoryOpen }) => {
   const history = useSelector((state: RootState) => state.query.history);
   const dispatch = useDispatch();
 
@@ -14,6 +16,7 @@ const QueryHistory: React.FC = () => {
     error: string | null;
   }) => {
     dispatch(restoreQuery(queryData));
+    setHistoryOpen(false);
   };
 
   return (

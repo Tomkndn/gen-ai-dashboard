@@ -40,11 +40,11 @@ const Dashboard: React.FC = () => {
           <h2 className="text-xl font-semibold mb-4 text-blue-300">
             Query History
           </h2>
-          <QueryHistory />
+          <QueryHistory setHistoryOpen={setHistoryOpen} />
         </aside>
 
         <button
-          className="md:hidden fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg"
+          className="md:hidden fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg z-50"
           onClick={() => setHistoryOpen(!historyOpen)}
         >
           📜
@@ -61,7 +61,7 @@ const Dashboard: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4 text-blue-300">
               Query History
             </h2>
-            <QueryHistory />
+            <QueryHistory setHistoryOpen={setHistoryOpen} />
           </div>
         )}
 
